@@ -42,9 +42,9 @@ num = int(input())
 
 
 def check_temp(num: int) -> str:
-	for k, v in res.items():
-		if num in v:
-			return f"{k}"
+    for k, v in res.items():
+        if num in v:
+            return f"{k}"
 
 
 print(check_temp(num=num))
