@@ -23,14 +23,28 @@
 # Sample Output 4:
 # Not Success
 
+string = input()
 
-d = {40: 41, 123: 125, 91: 93}  # "(){}[]"
 
-s = input()
-l = []
+def check_brackets(data: str) -> str:
+    """Проверка корректно ли расставлены скобки в коде"""
+    stack = []
 
-for i in s:
-    if i in "([{]})":
-		if l[-1] ==
+    for char in data:  # проход по всем данным
+        if char in "([{":  # если скобка открывающая добавляем в стек
+            stack.append(char)  # добавляем в стек скобку
+        elif char in "}])":  # если скобка закрывающая
+            if not stack or is_matching_brackets(stack.pop(), char):
+                # если стек пуст, а у нас еще есть закрывающая скобка или
+                # открывающаяся скобка != закрывающая скобка то возвращаем "Not Success"
+                return "Not Success"
+    return "Not Success" if stack else "Success"
 
-print(l)
+
+def is_matching_brackets(open_bracket: str, close_bracket: str) -> bool:
+    """Если скобки равны вернем False иначе True"""
+    brackets = {'(': ')', '[': ']', '{': '}'}
+    return brackets.get(open_bracket) != close_bracket
+
+
+print(check_brackets(string))
