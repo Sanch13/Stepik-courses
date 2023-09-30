@@ -92,7 +92,7 @@ LOGGING = {
     'disable_existing_loggers': False,
 
     'formatters': {
-        'main': {
+        'main': {  # [30 September 2023 12:10:14] INFO | basehttp | "GET / HTTP/1.1" 200 10664
             'format': '[{asctime}] {levelname} | {module} | {message}',
             'datefmt': '%d %B %Y %H:%M:%S',
             'style': "{",
