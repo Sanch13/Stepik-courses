@@ -10,6 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 MONGO_URL = 'mongodb://localhost:27017'
+AUTH_USER_MODEL = "users.User"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -23,6 +24,9 @@ INSTALLED_APPS = [
 
     'mainapp.apps.MainappConfig',
     "shop.apps.ShopConfig",
+    "users.apps.UsersConfig",
+    "products.apps.ProductsConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
