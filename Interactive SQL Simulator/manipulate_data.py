@@ -21,5 +21,6 @@ def get_data_from_db(query):
             connection.close()
 
 
-result = get_data_from_db(query=query)
-pprint(result)
+if __name__ == '__main__':
+    result = get_data_from_db(query=query)
+    pprint(result)
