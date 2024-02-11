@@ -6,8 +6,8 @@ from mysql.connector import Error
 # user=os.getenv("USERNAME"),
 # password=os.getenv("PASSWORD"),
 config = {
-    'user': 'sanch',
-    'password': 'vektor1302',
+    'user': 'user',
+    'password': 'password',
     'host': '127.0.0.1',
     'database': 'mysql',
 }
