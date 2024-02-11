@@ -1,4 +1,4 @@
-from pprint import pprint
+from tabulate import tabulate
 
 from mysql.connector import Error
 
@@ -12,7 +12,8 @@ def get_data_from_db(query):
         cursor = connection.cursor()
         cursor.execute(query)
         data = cursor.fetchall()
-        return data
+        headers = [column[0] for column in cursor.description] if data else []
+        return headers, data
     except Error as e:
         print("Error while executing query:", e)
     finally:
@@ -22,5 +23,11 @@ def get_data_from_db(query):
 
 
 if __name__ == '__main__':
-    result = get_data_from_db(query=query)
-    pprint(result)
+    headers, result = get_data_from_db(query=query)
+    table_data = [list(row) for row in result]
+    if table_data:
+        print(tabulate(tabular_data=table_data,
+                       headers=headers,
+                       tablefmt='fancy_outline'))
+    else:
+        print("No data")
