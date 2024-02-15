@@ -68,17 +68,13 @@
 # «Белая гвардия». В результат включить только тех авторов, у которых суммарная стоимость книг
 # (без учета книг «Идиот» и «Белая гвардия») более 5000 руб. Вычисляемый столбец назвать Стоимость.
 # Результат отсортировать по убыванию стоимости.
-query = """
-SELECT price * amount AS "Стоимость"
-  FROM book
- WHERE title <> "Идиот" OR title <> "Белая гвардия"
- GROUP BY author;
-
-"""
-# SELECT author,
-#        MAX(price) AS Максимальная_цена,
-#        MIN(price) AS Минимальная_цена
+# query = """
+# SELECT author, SUM(price * amount) AS Стоимость
 #   FROM book
-#  WHERE author NOT LIKE "%Есенин%"
+#  WHERE title NOT IN ("Идиот", "Белая гвардия")
 #  GROUP BY author
-# HAVING SUM(amount) > 10;
+# HAVING Стоимость > 5000
+#  ORDER BY Стоимость DESC;
+# """
+
+# 1.3.7 
