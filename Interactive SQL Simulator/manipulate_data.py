@@ -3,7 +3,7 @@ from tabulate import tabulate
 from mysql.connector import Error
 
 from conn_to_bd import connect_to_bd
-from querysets_1_3 import query
+from querysets_1_4 import query
 
 
 def get_data_from_db(query):
