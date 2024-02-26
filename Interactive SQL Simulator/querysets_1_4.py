@@ -49,12 +49,13 @@
 # ROUND(SUM(price * amount), 2) SELECT title, author, price, amount,
 #        (SELECT ROUND((SUM(price) / amount) * 100, 2) FROM book) AS income_percent
 #   FROM book
+
 # 1.4.5 при продаже всех книг, какая книга принесет больше всего выручки, в процентах.
 # query = """
 # SELECT author, title, price, amount,
 #        (
 #        ROUND(amount * price / (SELECT SUM(price * amount ) FROM book) * 100, 2)
 #        ) AS income_percent
-# FROM book
+#  FROM book
 # ORDER BY income_percent DESC;
 # """
