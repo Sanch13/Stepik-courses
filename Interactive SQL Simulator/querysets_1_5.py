@@ -53,3 +53,24 @@
 #    SET price = 0.9 * price
 #  WHERE amount BETWEEN 5 AND 10;
 # """
+
+# 1.5.5 В таблице book необходимо скорректировать значение для покупателя в столбце buy таким
+# образом, чтобы оно не превышало количество экземпляров книг, указанных в столбце amount.
+# А цену тех книг, которые покупатель не заказывал, снизить на 10%.
+# query = """
+# UPDATE book
+#    SET buy = IF(buy <= amount, buy, amount),
+#        price = IF(buy = 0, 0.9 * price, price);
+# """
+
+# 1.5.6 Для тех книг в таблице book , которые есть в таблице supply, не только увеличить их
+# количество в таблице book ( увеличить их количество на значение столбца amount таблицы supply),
+# но и пересчитать их цену (для каждой книги найти сумму цен из таблиц book и supply и
+# разделить на 2).
+# query = """
+# UPDATE book, supply
+#    SET book.amount = book.amount + supply.amount,
+#        book.price = (book.price + supply.price) / 2
+#  WHERE book.author = supply.author AND book.title = supply.title;
+# """
+
