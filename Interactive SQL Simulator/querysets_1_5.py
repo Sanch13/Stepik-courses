@@ -74,3 +74,18 @@
 #  WHERE book.author = supply.author AND book.title = supply.title;
 # """
 
+# 1.5.7 Удалить из таблицы supply книги тех авторов, общее количество экземпляров книг которых
+# в таблице book превышает 10. DELETE FROM supply
+#  WHERE book.author = supply.author AND book.title = supply.title;
+# query = """
+# DELETE FROM supply
+# WHERE author in (
+#                  SELECT author
+#                  FROM book
+#                  WHERE amount >= 10
+#                  GROUP BY author
+#                  );
+# """
+
+# 1.5.8
+

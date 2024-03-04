@@ -42,17 +42,19 @@ def insert_data_to_db(query):
         cursor.close()
         connection.close()
     except Error as e:
-        print("Error while connecting to MySQL", e)
+        print("Ошибка при подключении к MySQL", e)
 
 
 if __name__ == '__main__':
     # create_tables(query=query)
-    insert_data_to_db(query=query)
-    # headers, result = get_data_from_db(query=query)
-    # table_data = [list(row) for row in result]
-    # if table_data:
-    #     print(tabulate(tabular_data=table_data,
-    #                    headers=headers,
-    #                    tablefmt='fancy_outline'))
-    # else:
-    #     print("No data")
+
+    # insert_data_to_db(query=query)
+
+    headers, result = get_data_from_db(query=query)
+    table_data = [list(row) for row in result]
+    if table_data:
+        print(tabulate(tabular_data=table_data,
+                       headers=headers,
+                       tablefmt='fancy_outline'))
+    else:
+        print("No data")
