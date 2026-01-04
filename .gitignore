@@ -10,3 +10,4 @@ __init__
 *.crt
 *.key
 **/logs/
+*.pem
