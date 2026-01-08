@@ -1,37 +1,41 @@
 """
-Подвиг 6. В программе ниже объявлен класс перечисления FoldersTable с набором полей таблицы
-и список из данных (записей таблицы) data:
+Подвиг 7. С помощью класса Enum объявите перечисление PlatformOS со следующими константами:
 
-from enum import Enum
+WINDOWS = 'wnd'
+LINUX = 'linux'
+Объявите функцию с сигнатурой:
 
-class FoldersTable(Enum):
-	ID = 0
-	NAME = 1
-	PRICE = 2
-	WEIGHT = 3
+def path_join(*args, p:PlatformOS=PlatformOS.LINUX)
+которая формирует и возвращает маршрут к файлу на основе фрагментов пути, указанных в первых
+позиционных аргументах args. Если используется платформа LINUX, то разделителем каталогов должен
+быть символ '/'. Если же используется платформа WINDOWS, то разделителем является символ '\'
+(этот символ должен экранироваться в тексте программы).
 
-data = [(1, 'Table', 1000, 1.5), (4, 'CPU', 34200, 0.1), (2, 'Camera', 23100, 0.5)]
+Вызовите функцию path_join с позиционными аргументами:
 
-Необходимо сформировать словарь d_data, в котором ключами будут являться названия полей
-(констант) класса FoldersTable, а значениями списки с соответствующими им значениям. Например,
-значением ключа ID должен быть список из идентификаторов [1, 4, 2] (первые элементы кортежей
-из data). И так для всех четырех свойств.
+"usr", "bin", "java", "course.java"
+
+для построения маршрута на платформе WINDOWS. Результат сохраните в переменной filename.
 
 P.S. На экран ничего выводить не нужно.
 """
 
 from enum import Enum
 
-class FoldersTable(Enum):
-	ID = 0
-	NAME = 1
-	PRICE = 2
-	WEIGHT = 3
+class PlatformOS(Enum):
+	WINDOWS = 'wnd'
+	LINUX = 'linux'
 
 
-data = [(1, 'Table', 1000, 1.5), (4, 'CPU', 34200, 0.1), (2, 'Camera', 23100, 0.5)]
+def path_join(*args, p:PlatformOS=PlatformOS.LINUX) -> str:
+	if p == PlatformOS.WINDOWS:
+		return '\\'.join(args)
 
-# здесь продолжайте программу
-d_data = {}
-for item in FoldersTable:
-	d_data.update({item.name: [el[item.value] for el in data]})
+	elif p == PlatformOS.LINUX:
+		return '/'.join(args)
+
+
+
+filename = path_join("usr", "bin", "java", "course.java", p=PlatformOS.WINDOWS)
+# filename = path_join("usr", "bin", "java", "course.java", p=PlatformOS.LINUX)
+print(filename)
